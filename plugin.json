@@ -1,0 +1,14 @@
+{
+    "name": "PlentyTestPlugin",
+    "type": "plugin",
+    "author": "aamaisurr",
+    "namespace": "PlentyTestPlugin",
+    "custom": true,
+    "serviceProvider": "PlentyTestPlugin\\Providers\\PlentyTestPluginServiceProvider",
+    "dependencies": [
+        "IO"
+    ],
+    "require": {
+        "IO": ">=5.0.0"
+    }
+}

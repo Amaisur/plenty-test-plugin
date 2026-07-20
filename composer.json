@@ -1,0 +1,10 @@
+{
+    "name": "plenty-test/plenty-test-plugin",
+    "description": "Test plugin that replaces the homepage with a hardcoded demo page.",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PlentyTestPlugin\\": "src/"
+        }
+    }
+}

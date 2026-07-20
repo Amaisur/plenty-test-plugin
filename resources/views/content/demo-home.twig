@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlentyTestPlugin – Demo Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+        header {
+            background: #1c2b39;
+            color: #fff;
+            padding: 24px 40px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        header span {
+            font-size: 13px;
+            color: #9fb3c8;
+        }
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 32px 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        main h2 {
+            margin-top: 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #ffb400;
+            color: #1c2b39;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PlentyTestPlugin</h1>
+        <span>Demo homepage override — hardcoded content, no live data</span>
+    </header>
+
+    <main>
+        <div class="badge">TEST PLUGIN</div>
+        <h2>This is a hardcoded demo page</h2>
+        <p>
+            This page is rendered by <strong>PlentyTestPlugin</strong> and replaces
+            the normal PlentyONE storefront homepage (the <code>/</code> route).
+            All content on this page is static — nothing here comes from the
+            shop's actual categories, items, or CMS content.
+        </p>
+        <p>
+            Use this as a starting point: swap this Twig template's markup for
+            whatever you actually want the homepage to show, or replace the
+            static HTML with real Twig variables/data providers once you're
+            ready to go beyond a demo.
+        </p>
+    </main>
+
+    <footer>
+        PlentyTestPlugin demo &middot; rendered from resources/views/content/demo-home.twig
+    </footer>
+</body>
+</html>
