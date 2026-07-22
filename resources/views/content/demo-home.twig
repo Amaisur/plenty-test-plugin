@@ -14,6 +14,11 @@
     wherever this plugin's assets actually get served from in your
     PlentyONE setup (plugin asset upload / CDN) — check your platform's
     asset-referencing convention before going live.
+
+    Design tokens (accent orange, dark slate header, ~1500px container,
+    generic sans-serif) are tuned to sit close to lumi.cn's public visual
+    style. Content, images, logo and copy are all placeholder — none of
+    lumi.cn's actual text/photos/brand assets are used here.
 #}
 
 {% set site = {
@@ -121,16 +126,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root {
-            --brand-dark: #1c2b39;
-            --brand-accent: #ffb400;
-            --text: #222;
-            --muted: #666;
-            --bg: #f6f7f8;
+            --brand-dark: #37474f;
+            --brand-accent: #f08300;
+            --text: #212529;
+            --muted: #757575;
+            --bg: #f7f7f7;
         }
         * { box-sizing: border-box; }
-        body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--text); background: #fff; }
+        body { margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--text); background: #fff; }
         a { text-decoration: none; color: inherit; }
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .wrap { max-width: 1500px; margin: 0 auto; padding: 0 24px; }
 
         /* Header / nav */
         header.site-header { background: var(--brand-dark); color: #fff; }
@@ -153,7 +158,7 @@
         .hero-text { position: relative; z-index: 1; color: #fff; padding: 0 60px; max-width: 500px; }
         .hero-text h2 { font-size: 32px; margin: 0 0 12px; }
         .hero-text p { font-size: 15px; margin: 0 0 18px; color: #eee; }
-        .hero-text a.btn { display: inline-block; background: var(--brand-accent); color: #1c2b39; padding: 10px 20px; font-weight: bold; border-radius: 4px; font-size: 13px; }
+        .hero-text a.btn { display: inline-block; background: var(--brand-accent); color: #fff; padding: 10px 20px; font-weight: bold; border-radius: 4px; font-size: 13px; }
         .hero-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 8px; }
         .hero-dots button { width: 9px; height: 9px; border-radius: 50%; border: none; background: rgba(255,255,255,0.5); cursor: pointer; padding: 0; }
         .hero-dots button.active { background: #fff; }
