@@ -10,6 +10,8 @@ homepage (`/`) with a hardcoded static demo page.
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
 - `src/Controllers/DemoHomeController.php` — renders the demo template
 - `resources/views/content/demo-home.twig` — the hardcoded homepage content
+- `resources/css/demo-home.css` — homepage styles (external file, not inline — see note below)
+- `resources/js/demo-home.js` — hero carousel + background-image behavior (external file, not inline — see note below)
 
 ## How it works
 
@@ -27,6 +29,20 @@ runtime for it, so it can't be started or previewed from this machine. To try it
 2. Add the plugin to your active **plugin set** and set it to **active**.
 3. Deploy the plugin set.
 4. Open the shop's homepage — it should now show the hardcoded demo page.
+
+## Note on CSS/JS and Content-Security-Policy
+
+CSS and JS are kept as separate files (`resources/css/demo-home.css`,
+`resources/js/demo-home.js`) rather than inline `<style>`/`<script>` blocks,
+because PlentyONE shops commonly send a Content-Security-Policy header that
+blocks inline styles/scripts (`unsafe-inline` disabled) — inline blocks will
+silently fail with a CSP console error in that case.
+
+The `<link>`/`<script src>` paths in `demo-home.twig`
+(`/plugin-assets/PlentyTestPlugin/...`) are **placeholders**. Replace them
+with whatever URL your PlentyONE instance actually serves this plugin's
+static assets from — check Plugin overview → your plugin's asset/CDN URL,
+since the exact path convention varies by platform version.
 
 ## Note on the manifest schema
 

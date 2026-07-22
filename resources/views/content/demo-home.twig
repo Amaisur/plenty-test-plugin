@@ -19,6 +19,13 @@
     generic sans-serif) are tuned to sit close to lumi.cn's public visual
     style. Content, images, logo and copy are all placeholder — none of
     lumi.cn's actual text/photos/brand assets are used here.
+
+    CSS/JS live in resources/css/demo-home.css and resources/js/demo-home.js
+    (not inline) because PlentyONE shops typically send a Content-Security-
+    Policy header that blocks inline <style>/<script>. The href/src below
+    are placeholders — point them at wherever your PlentyONE instance
+    actually serves this plugin's static assets (check Plugin overview →
+    your plugin → asset/CDN URL, since this varies by platform version).
 #}
 
 {% set site = {
@@ -124,94 +131,7 @@
     <meta charset="UTF-8">
     <title>{{ site.name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        :root {
-            --brand-dark: #37474f;
-            --brand-accent: #f08300;
-            --text: #212529;
-            --muted: #757575;
-            --bg: #f7f7f7;
-        }
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: var(--text); background: #fff; }
-        a { text-decoration: none; color: inherit; }
-        .wrap { max-width: 1500px; margin: 0 auto; padding: 0 24px; }
-
-        /* Header / nav */
-        header.site-header { background: var(--brand-dark); color: #fff; }
-        .nav-bar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-        .logo { font-size: 20px; font-weight: bold; letter-spacing: 0.5px; }
-        .logo span { display: block; font-size: 11px; font-weight: normal; color: #9fb3c8; }
-        nav.main-nav ul { list-style: none; display: flex; gap: 28px; margin: 0; padding: 0; }
-        nav.main-nav a { font-size: 14px; color: #dce6ef; }
-        nav.main-nav a:hover { color: var(--brand-accent); }
-
-        /* Hero carousel */
-        .hero { position: relative; height: 420px; overflow: hidden; background: #ddd; }
-        .hero-slide {
-            position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease;
-            background-size: cover; background-position: center;
-            display: flex; align-items: center;
-        }
-        .hero-slide.active { opacity: 1; }
-        .hero-slide::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.35); }
-        .hero-text { position: relative; z-index: 1; color: #fff; padding: 0 60px; max-width: 500px; }
-        .hero-text h2 { font-size: 32px; margin: 0 0 12px; }
-        .hero-text p { font-size: 15px; margin: 0 0 18px; color: #eee; }
-        .hero-text a.btn { display: inline-block; background: var(--brand-accent); color: #fff; padding: 10px 20px; font-weight: bold; border-radius: 4px; font-size: 13px; }
-        .hero-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 8px; }
-        .hero-dots button { width: 9px; height: 9px; border-radius: 50%; border: none; background: rgba(255,255,255,0.5); cursor: pointer; padding: 0; }
-        .hero-dots button.active { background: #fff; }
-
-        /* Quick links grid */
-        .quick-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e5e5e5; }
-        .quick-links a { background: #fff; padding: 28px 12px; text-align: center; font-size: 13px; color: #333; }
-        .quick-links a:hover { background: #fafafa; }
-        .quick-links .icon { font-size: 26px; display: block; margin-bottom: 8px; }
-
-        /* Value prop banner */
-        .value-prop { position: relative; height: 260px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .value-prop::before { content: ""; position: absolute; inset: 0; background: rgba(20,30,40,0.55); }
-        .value-prop .inner { position: relative; z-index: 1; color: #fff; max-width: 620px; padding: 0 20px; }
-        .value-prop h2 { font-size: 24px; margin: 0 0 16px; }
-        .value-prop a.btn { display: inline-block; background: #fff; color: var(--brand-dark); padding: 10px 22px; font-weight: bold; border-radius: 4px; font-size: 13px; }
-
-        /* Articles / insights grid */
-        section.insights { padding: 50px 0; background: var(--bg); }
-        section.insights h2 { text-align: center; font-size: 22px; margin-bottom: 30px; }
-        .articles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .article-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .article-card img { width: 100%; height: 120px; object-fit: cover; display: block; background: #ddd; }
-        .article-body { padding: 14px; }
-        .article-tag { font-size: 10px; text-transform: uppercase; color: var(--brand-accent); font-weight: bold; }
-        .article-title { font-size: 14px; margin: 6px 0; line-height: 1.4; }
-        .article-date { font-size: 11px; color: var(--muted); }
-
-        /* Why choose */
-        section.why-choose { padding: 60px 0; text-align: center; }
-        section.why-choose h2 { font-size: 24px; margin-bottom: 18px; }
-        section.why-choose p { max-width: 700px; margin: 0 auto 24px; color: var(--muted); line-height: 1.7; }
-        section.why-choose a.btn { display: inline-block; background: var(--brand-dark); color: #fff; padding: 12px 28px; border-radius: 4px; font-size: 13px; font-weight: bold; }
-
-        /* Footer */
-        footer.site-footer { background: var(--brand-dark); color: #cdd8e0; padding: 40px 0 20px; }
-        .footer-columns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
-        .footer-columns h3 { font-size: 13px; color: #fff; margin: 0 0 12px; }
-        .footer-columns ul { list-style: none; margin: 0; padding: 0; }
-        .footer-columns li { margin-bottom: 8px; }
-        .footer-columns a { font-size: 13px; color: #aebccb; }
-        .footer-columns a:hover { color: var(--brand-accent); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #8fa0b0; }
-        .footer-legal a { margin-left: 14px; color: #8fa0b0; }
-        .footer-social a { margin-left: 12px; color: #8fa0b0; }
-
-        @media (max-width: 900px) {
-            nav.main-nav { display: none; }
-            .quick-links { grid-template-columns: repeat(2, 1fr); }
-            .articles-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-columns { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
+    <link rel="stylesheet" href="/plugin-assets/PlentyTestPlugin/css/demo-home.css">
 </head>
 <body>
 
@@ -230,7 +150,7 @@
 
     <section class="hero" id="hero">
         {% for slide in hero_slides %}
-            <div class="hero-slide{% if loop.first %} active{% endif %}" style="background-image: url('{{ slide.image }}');" data-index="{{ loop.index0 }}">
+            <div class="hero-slide{% if loop.first %} active{% endif %}" data-bg="{{ slide.image }}" data-index="{{ loop.index0 }}">
                 <div class="wrap hero-text">
                     <h2>{{ slide.title }}</h2>
                     <p>{{ slide.subtitle }}</p>
@@ -251,7 +171,7 @@
         {% endfor %}
     </div>
 
-    <section class="value-prop" style="background-image: url('{{ value_prop.image }}');">
+    <section class="value-prop" data-bg="{{ value_prop.image }}">
         <div class="inner">
             <h2>{{ value_prop.headline }}</h2>
             <a class="btn" href="{{ value_prop.cta_url }}">{{ value_prop.cta_label }}</a>
@@ -314,42 +234,7 @@
         </div>
     </footer>
 
-    <script>
-        (function () {
-            var slides = document.querySelectorAll('.hero-slide');
-            var dots = document.querySelectorAll('.hero-dots button');
-            var current = 0;
-            var timer;
-
-            function show(index) {
-                slides.forEach(function (s) { s.classList.remove('active'); });
-                dots.forEach(function (d) { d.classList.remove('active'); });
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                current = index;
-            }
-
-            function next() {
-                show((current + 1) % slides.length);
-            }
-
-            function startAuto() {
-                timer = setInterval(next, 6000);
-            }
-
-            dots.forEach(function (dot) {
-                dot.addEventListener('click', function () {
-                    clearInterval(timer);
-                    show(parseInt(dot.getAttribute('data-index'), 10));
-                    startAuto();
-                });
-            });
-
-            if (slides.length > 1) {
-                startAuto();
-            }
-        })();
-    </script>
+    <script src="/plugin-assets/PlentyTestPlugin/js/demo-home.js"></script>
 
 </body>
 </html>
