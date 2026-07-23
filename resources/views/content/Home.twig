@@ -23,9 +23,8 @@
     CSS/JS live in resources/css/demo-home.css and resources/js/demo-home.js
     (not inline) because PlentyONE shops typically send a Content-Security-
     Policy header that blocks inline <style>/<script>. The href/src below
-    are placeholders — point them at wherever your PlentyONE instance
-    actually serves this plugin's static assets (check Plugin overview →
-    your plugin → asset/CDN URL, since this varies by platform version).
+    use the platform's plugin_path('PlentyTestPlugin') Twig function, which
+    resolves to this plugin's resources folder at render time.
 #}
 
 {% set site = {
@@ -131,7 +130,7 @@
     <meta charset="UTF-8">
     <title>{{ site.name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ plugin_path('Theme') }}/css/main.css">
+    <link rel="stylesheet" href="{{ plugin_path('PlentyTestPlugin') }}/css/demo-home.css">
 </head>
 <body>
 
@@ -234,7 +233,7 @@
         </div>
     </footer>
 
-    <script src="/plugin-assets/PlentyTestPlugin/js/demo-home.js"></script>
+    <script src="{{ plugin_path('PlentyTestPlugin') }}/js/demo-home.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 {
     "name": "PlentyTestPlugin",
-    "type": "plugin",
+    "type": "template",
     "author": "aamaisurr",
     "namespace": "PlentyTestPlugin",
     "custom": true,

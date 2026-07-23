@@ -38,11 +38,12 @@ because PlentyONE shops commonly send a Content-Security-Policy header that
 blocks inline styles/scripts (`unsafe-inline` disabled) — inline blocks will
 silently fail with a CSP console error in that case.
 
-The `<link>`/`<script src>` paths in `Home.twig`
-(`/plugin-assets/PlentyTestPlugin/...`) are **placeholders**. Replace them
-with whatever URL your PlentyONE instance actually serves this plugin's
-static assets from — check Plugin overview → your plugin's asset/CDN URL,
-since the exact path convention varies by platform version.
+The `<link>`/`<script src>` paths in `Home.twig` use the platform's
+`plugin_path('PlentyTestPlugin')` Twig function
+(e.g. `{{ plugin_path('PlentyTestPlugin') }}/css/demo-home.css`), which
+resolves to this plugin's `resources` folder at render time. This is the
+documented plentymarkets convention for referencing a plugin's own static
+resources from Twig — no manual CDN/URL wiring needed.
 
 ## Note on the manifest schema
 
