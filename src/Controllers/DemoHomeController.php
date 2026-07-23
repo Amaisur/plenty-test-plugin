@@ -9,6 +9,6 @@ class DemoHomeController extends Controller
 {
     public function show(Twig $twig)
     {
-        return $twig->render('PlentyTestPlugin::content.demo-home');
+        return $twig->render('PlentyTestPlugin::content.Home');
     }
 }

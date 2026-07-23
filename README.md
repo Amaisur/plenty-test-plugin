@@ -9,14 +9,14 @@ homepage (`/`) with a hardcoded static demo page.
 - `composer.json` — PSR-4 autoload mapping (`PlentyTestPlugin\` → `src/`)
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
 - `src/Controllers/DemoHomeController.php` — renders the demo template
-- `resources/views/content/demo-home.twig` — the hardcoded homepage content
+- `resources/views/content/Home.twig` — the hardcoded homepage content
 - `resources/css/demo-home.css` — homepage styles (external file, not inline — see note below)
 - `resources/js/demo-home.js` — hero carousel + background-image behavior (external file, not inline — see note below)
 
 ## How it works
 
 The service provider's `boot()` method registers a `GET /` route that points
-at `DemoHomeController::show()`, which renders `demo-home.twig` instead of
+at `DemoHomeController::show()`, which renders `Home.twig` instead of
 whatever the shop normally shows on its homepage (category page, CMS page, etc).
 
 ## Testing this
@@ -38,7 +38,7 @@ because PlentyONE shops commonly send a Content-Security-Policy header that
 blocks inline styles/scripts (`unsafe-inline` disabled) — inline blocks will
 silently fail with a CSP console error in that case.
 
-The `<link>`/`<script src>` paths in `demo-home.twig`
+The `<link>`/`<script src>` paths in `Home.twig`
 (`/plugin-assets/PlentyTestPlugin/...`) are **placeholders**. Replace them
 with whatever URL your PlentyONE instance actually serves this plugin's
 static assets from — check Plugin overview → your plugin's asset/CDN URL,
