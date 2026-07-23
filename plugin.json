@@ -6,7 +6,8 @@
     "custom": true,
     "serviceProvider": "PlentyTestPlugin\\Providers\\PlentyTestPluginServiceProvider",
     "dependencies": [
-        "IO"
+        "IO",
+        "Ceres"
     ],
     "require": {
         "IO": ">=5.0.0",
