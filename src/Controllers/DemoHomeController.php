@@ -6,6 +6,7 @@ use Plenty\Plugin\Controller;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Templates\Twig;
 use PlentyTestPlugin\Configs\HeaderConfig;
+use PlentyTestPlugin\Configs\HeroConfig;
 
 class DemoHomeController extends Controller
 {
@@ -13,6 +14,7 @@ class DemoHomeController extends Controller
     {
         return $twig->render('PlentyTestPlugin::content.Home', [
             'header' => HeaderConfig::get(),
+            'hero' => HeroConfig::get(),
             'searchAction' => $config->get('PlentyTestPlugin.searchAction', '/search'),
             'searchParam' => $config->get('PlentyTestPlugin.searchParam', 'query'),
         ]);

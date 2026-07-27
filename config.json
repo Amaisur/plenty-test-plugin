@@ -1,27 +1,26 @@
 {
-    "sections": [
-        {
-            "title": "Header search",
-            "settings": [
-                {
-                    "key": "searchAction",
-                    "type": "inputText",
-                    "default": "/search",
-                    "label": {
-                        "en": "Search results page path",
-                        "de": "Pfad der Suchergebnisseite"
-                    }
-                },
-                {
-                    "key": "searchParam",
-                    "type": "inputText",
-                    "default": "query",
-                    "label": {
-                        "en": "Search query parameter name",
-                        "de": "Name des Suchparameters"
-                    }
-                }
-            ]
+  "formatVersion": 1,
+  "menu": {
+    "headerSearch": {
+      "label": "Header search",
+      "formFields": {
+        "searchAction": {
+          "type": "inputText",
+          "required": false,
+          "label": "Search results page path",
+          "options": {
+            "defaultValue": "/search"
+          }
+        },
+        "searchParam": {
+          "type": "inputText",
+          "required": false,
+          "label": "Search query parameter name",
+          "options": {
+            "defaultValue": "query"
+          }
         }
-    ]
+      }
+    }
+  }
 }

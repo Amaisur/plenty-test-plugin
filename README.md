@@ -11,10 +11,13 @@ homepage (`/`) with a hardcoded static demo page.
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
 - `src/Controllers/DemoHomeController.php` — renders the demo template, passing header content + search config into Twig
 - `src/Configs/HeaderConfig.php` — all header content (logo, nav labels/links, mega menu, language switcher, search copy) as a plain PHP array; edit this to change what the header shows, never the Twig
-- `resources/views/content/Home.twig` — the homepage content; includes the header partial
+- `src/Configs/HeroConfig.php` — the homepage hero slider's slides (image, link, series label, title) as a plain PHP array
+- `resources/views/content/Home.twig` — the homepage content; includes the header and hero partials
 - `resources/views/content/partials/Header.twig` — renders `HeaderConfig`'s data into the LUMI-style sticky header/mega-menu markup
+- `resources/views/content/partials/Hero.twig` — renders `HeroConfig`'s slides into the autoplaying hero slider (desktop tab bar + mobile swipe carousel)
 - `resources/css/demo-home.css` / `resources/js/demo-home.js` — homepage styles/behavior (external files, not inline — see note below)
 - `resources/css/header.css` / `resources/js/header.js` — header styles/behavior (external files, not inline — see note below)
+- `resources/css/hero.css` / `resources/js/hero.js` — hero slider styles/behavior (external files, not inline — see note below)
 
 ## Header content & search
 
