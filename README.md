@@ -5,13 +5,21 @@ homepage (`/`) with a hardcoded static demo page.
 
 ## Structure
 
-- `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`)
+- `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`, points at `config.json`)
+- `config.json` — the two backend-editable settings for the header search form (`searchAction`, `searchParam`); see note below
 - `composer.json` — PSR-4 autoload mapping (`PlentyTestPlugin\` → `src/`)
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
-- `src/Controllers/DemoHomeController.php` — renders the demo template
-- `resources/views/content/Home.twig` — the hardcoded homepage content
-- `resources/css/demo-home.css` — homepage styles (external file, not inline — see note below)
-- `resources/js/demo-home.js` — hero carousel + background-image behavior (external file, not inline — see note below)
+- `src/Controllers/DemoHomeController.php` — renders the demo template, passing header content + search config into Twig
+- `src/Configs/HeaderConfig.php` — all header content (logo, nav labels/links, mega menu, language switcher, search copy) as a plain PHP array; edit this to change what the header shows, never the Twig
+- `resources/views/content/Home.twig` — the homepage content; includes the header partial
+- `resources/views/content/partials/Header.twig` — renders `HeaderConfig`'s data into the LUMI-style sticky header/mega-menu markup
+- `resources/css/demo-home.css` / `resources/js/demo-home.js` — homepage styles/behavior (external files, not inline — see note below)
+- `resources/css/header.css` / `resources/js/header.js` — header styles/behavior (external files, not inline — see note below)
+
+## Header content & search
+
+- All header text/links (nav, mega menu columns, language switcher, logo) live in `src/Configs/HeaderConfig.php` as a plain array — change the array, not `Header.twig`, to edit content.
+- The search form submits a normal GET request to `searchAction` (default `/search`) with the query in the `searchParam` field (default `query`), matching `IO\Controllers\ItemSearchController::showSearch()`, which reads `request->get('query')`. Both are overridable per-shop from **Plugin → Configuration** (defined in `config.json`) without redeploying, since the search route slug can differ between shops/languages.
 
 ## How it works
 

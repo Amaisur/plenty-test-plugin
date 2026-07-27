@@ -1,0 +1,27 @@
+{
+    "sections": [
+        {
+            "title": "Header search",
+            "settings": [
+                {
+                    "key": "searchAction",
+                    "type": "inputText",
+                    "default": "/search",
+                    "label": {
+                        "en": "Search results page path",
+                        "de": "Pfad der Suchergebnisseite"
+                    }
+                },
+                {
+                    "key": "searchParam",
+                    "type": "inputText",
+                    "default": "query",
+                    "label": {
+                        "en": "Search query parameter name",
+                        "de": "Name des Suchparameters"
+                    }
+                }
+            ]
+        }
+    ]
+}

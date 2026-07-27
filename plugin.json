@@ -5,6 +5,7 @@
     "namespace": "PlentyTestPlugin",
     "custom": true,
     "serviceProvider": "PlentyTestPlugin\\Providers\\PlentyTestPluginServiceProvider",
+    "config": "config.json",
     "dependencies": [
         "IO",
         "Ceres"

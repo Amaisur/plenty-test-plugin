@@ -1,0 +1,622 @@
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+:root{
+  --brand:#f08300;
+  --brand-dark:#d97600;
+  --ink:#333333;
+  --ink-soft:#666666;
+  --ink-mute:#999999;
+  --line:#e6e6e6;
+  --line-soft:#f0f0f0;
+  --bg:#ffffff;
+  --bg-soft:#f7f7f7;
+  --header-h:90px;
+  --header-h-sm:64px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+/* ==========================================================================
+   Header shell
+   ========================================================================== */
+.lh-site-header-d5{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:1000;
+  background:#111;
+  border-bottom:1px solid var(--line);
+  font-family:var(--font);
+  font-size:14px;
+  line-height:1.5;
+  transition:box-shadow .3s var(--ease),height .3s var(--ease);
+}
+.lh-site-header-d5 *,.lh-site-header-d5 *::before,.lh-site-header-d5 *::after{box-sizing:border-box;}
+.lh-site-header-d5 ul{margin:0;padding:0;list-style:none;}
+.lh-site-header-d5 a{color:inherit;text-decoration:none;}
+.lh-site-header-d5 img{display:block;max-width:100%;border:0;}
+.lh-site-header-d5 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;}
+.lh-site-header-d5 :focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.lh-site-header-d5.lh-is-stuck-d5{box-shadow:0 2px 14px rgba(0,0,0,.09);}
+
+.lh-header-inner-d5{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  height:var(--header-h);
+  max-width:1600px;
+  margin:0 auto;
+  padding:0 40px;
+  transition:height .3s var(--ease);
+}
+.lh-site-header-d5.lh-is-stuck-d5 .lh-header-inner-d5{height:72px;}
+
+/* Logo */
+.lh-logo-d5{flex:0 0 auto;display:block;}
+.lh-logo-d5 img{width:150px;height:auto;}
+
+/* ==========================================================================
+   Primary navigation
+   ========================================================================== */
+.lh-main-nav-d5{margin-right:auto;}
+.lh-nav-list-d5{display:flex;align-items:center;}
+
+.lh-nav-item-d5{position:relative;}
+.lh-nav-link-d5{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  height:var(--header-h);
+  padding:0 22px;
+  font-size:15px;
+  letter-spacing:.2px;
+  color:#fff;
+  transition:color .25s var(--ease),height .3s var(--ease);
+}
+.lh-site-header-d5.lh-is-stuck-d5 .lh-nav-link-d5{height:72px;}
+.lh-nav-link-d5::after{
+  content:"";
+  position:absolute;
+  left:22px;right:22px;bottom:22px;
+  height:2px;
+  background:var(--brand);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .3s var(--ease);
+}
+.lh-nav-item-d5:hover>.lh-nav-link-d5,
+.lh-nav-item-d5.lh-is-open-d5>.lh-nav-link-d5,
+.lh-nav-link-d5.lh-is-active-d5{color:var(--brand);}
+.lh-nav-item-d5:hover>.lh-nav-link-d5::after,
+.lh-nav-item-d5.lh-is-open-d5>.lh-nav-link-d5::after,
+.lh-nav-link-d5.lh-is-active-d5::after{transform:scaleX(1);}
+
+/* Caret */
+.lh-caret-d5{
+  width:8px;height:8px;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);
+  transition:transform .3s var(--ease);
+}
+.lh-nav-item-d5:hover>.lh-nav-link-d5 .lh-caret-d5,
+.lh-nav-item-d5.lh-is-open-d5>.lh-nav-link-d5 .lh-caret-d5{transform:translateY(1px) rotate(-135deg);}
+
+/* ==========================================================================
+   Simple dropdown
+   ========================================================================== */
+.lh-dropdown-d5{
+  position:absolute;
+  top:100%;left:50%;
+  min-width:210px;
+  padding:10px 0;
+  background:var(--bg);
+  border-top:2px solid var(--brand);
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  transform:translate(-50%,10px);
+  transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;
+}
+.lh-nav-item-d5:hover>.lh-dropdown-d5,
+.lh-nav-item-d5.lh-is-open-d5>.lh-dropdown-d5{opacity:1;visibility:visible;transform:translate(-50%,0);}
+
+.lh-dropdown-d5 a{
+  display:block;
+  padding:10px 24px;
+  font-size:14px;
+  color:var(--ink-soft);
+  white-space:nowrap;
+  transition:color .2s var(--ease),background .2s var(--ease),padding-left .2s var(--ease);
+}
+.lh-dropdown-d5 a:hover{color:var(--brand);background:var(--bg-soft);padding-left:30px;}
+.lh-dropdown-sub-d5{padding:2px 24px 10px;}
+.lh-dropdown-sub-d5 a{display:block;padding:5px 0;font-size:13px;color:var(--ink-mute);}
+.lh-dropdown-sub-d5 a:hover{padding-left:6px;background:none;}
+
+/* ==========================================================================
+   Mega menu (Products)
+   ========================================================================== */
+.lh-mega-d5{
+  position:fixed;
+  left:0;right:0;
+  top:var(--header-h);
+  background:var(--bg);
+  border-top:1px solid var(--line);
+  box-shadow:0 16px 30px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;
+}
+.lh-site-header-d5.lh-is-stuck-d5 .lh-mega-d5{top:72px;}
+.lh-nav-item-d5:hover>.lh-mega-d5,
+.lh-nav-item-d5.lh-is-open-d5>.lh-mega-d5{opacity:1;visibility:visible;transform:translateY(0);}
+
+.lh-mega-inner-d5{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0 30px;
+  max-width:1600px;
+  margin:0 auto;
+  padding:38px 40px 30px;
+  max-height:calc(100vh - var(--header-h) - 60px);
+  overflow-y:auto;
+}
+.lh-mega-col-d5{min-width:0;}
+.lh-mega-col-d5 + .lh-mega-col-d5{border-left:1px solid var(--line-soft);padding-left:30px;}
+
+.lh-mega-brand-d5{margin-bottom:20px;}
+.lh-mega-brand-d5 h3{
+  margin:0;
+  font-size:19px;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:var(--ink);
+  transition:color .2s var(--ease);
+}
+.lh-mega-brand-d5 a:hover h3{color:var(--brand);}
+.lh-mega-brand-d5 p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:var(--ink-mute);
+}
+.lh-mega-brand-d5::after{
+  content:"";
+  display:block;
+  width:34px;height:2px;
+  margin-top:12px;
+  background:var(--brand);
+}
+
+.lh-mega-group-d5{margin-bottom:18px;}
+.lh-mega-group-d5 > a{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--ink);
+  transition:color .2s var(--ease);
+}
+.lh-mega-group-d5 > a:hover{color:var(--brand);}
+.lh-mega-group-d5 ul li a{
+  display:block;
+  padding:4px 0;
+  font-size:13px;
+  color:var(--ink-soft);
+  transition:color .2s var(--ease),transform .2s var(--ease);
+}
+.lh-mega-group-d5 ul li a:hover{color:var(--brand);transform:translateX(4px);}
+
+.lh-tag-new-d5{
+  display:inline-block;
+  margin-left:6px;
+  padding:0 5px;
+  font-size:10px;
+  font-weight:700;
+  line-height:15px;
+  color:#fff;
+  background:#e03131;
+  border-radius:2px;
+  vertical-align:middle;
+}
+
+/* Brand logo strip */
+.lh-mega-heading-d5{
+  margin:0 0 14px;
+  font-size:15px;
+  font-weight:700;
+  color:var(--ink);
+}
+.lh-mega-heading-d5 small{
+  display:block;
+  font-size:12px;
+  font-weight:400;
+  color:var(--ink-mute);
+}
+.lh-solution-logos-d5{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:26px;
+}
+.lh-solution-logos-d5 a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:52px;
+  padding:8px;
+  border:1px solid var(--line);
+  transition:border-color .25s var(--ease);
+}
+.lh-solution-logos-d5 a:hover{border-color:var(--brand);}
+.lh-solution-logos-d5 img{max-height:26px;width:auto;object-fit:contain;}
+.lh-solution-logos-d5 .lh-on-d5{display:none;}
+.lh-solution-logos-d5 a:hover .lh-off-d5{display:none;}
+.lh-solution-logos-d5 a:hover .lh-on-d5{display:block;}
+
+/* What's new cards */
+.lh-news-cards-d5{display:grid;gap:10px;}
+.lh-news-cards-d5 a{
+  display:block;
+  overflow:hidden;
+  background:var(--bg-soft);
+}
+.lh-news-cards-d5 img{
+  width:100%;
+  height:auto;
+  transition:transform .5s var(--ease);
+}
+.lh-news-cards-d5 a:hover img{transform:scale(1.05);}
+
+/* Quick access bar */
+.lh-mega-quick-d5{
+  border-top:1px solid var(--line);
+  background:var(--bg-soft);
+}
+.lh-mega-quick-inner-d5{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px 34px;
+  max-width:1600px;
+  margin:0 auto;
+  padding:16px 40px;
+}
+.lh-mega-quick-inner-d5 span{
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink-mute);
+}
+.lh-mega-quick-inner-d5 a{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.6px;
+  color:var(--ink);
+  transition:color .2s var(--ease);
+}
+.lh-mega-quick-inner-d5 a:hover{color:var(--brand);}
+
+/* ==========================================================================
+   Search
+   ========================================================================== */
+.lh-search-d5{
+  display:flex;
+  align-items:center;
+  flex:0 1 210px;
+  min-width:0;
+  height:34px;
+  border:1px solid #ffffff38;
+  border-radius:3px;
+  transition:border-color .25s var(--ease);
+}
+.lh-search-d5:focus-within{border-color:var(--brand);}
+.lh-search-input-d5{
+  flex:1 1 auto;
+  min-width:0;
+  width:100%;
+  height:100%;
+  padding:0 4px 0 14px;
+  font-family:inherit;
+  font-size:14px;
+  color:#FFF;
+  border:0;
+  background:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.lh-search-input-d5::placeholder{color:var(--ink-mute);}
+.lh-search-input-d5::-webkit-search-cancel-button{display:none;}
+.lh-search-btn-d5{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  width:34px;height:100%;
+  color:#fff;
+  transition:color .2s var(--ease);
+}
+.lh-search-btn-d5:hover,
+.lh-search-d5:focus-within .lh-search-btn-d5{color:var(--brand);}
+.lh-search-icon-d5{width:16px;height:16px;}
+
+/* ==========================================================================
+   Mobile search modal (triggered by the icon button once the inline
+   search box collapses at <=1100px — see the Responsive section)
+   ========================================================================== */
+.lh-search-modal-d5{
+  position:fixed;
+  inset:0;
+  z-index:1100;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:90px 20px 0;
+  background:rgba(0,0,0,.5);
+  opacity:0;
+  visibility:hidden;
+  font-family:var(--font);
+  transition:opacity .25s var(--ease),visibility .25s;
+}
+.lh-search-modal-d5.lh-is-open-d5{opacity:1;visibility:visible;}
+.lh-search-modal-panel-d5{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  max-width:420px;
+  padding:10px 8px 10px 16px;
+  background:var(--bg);
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+  transform:translateY(-12px);
+  transition:transform .25s var(--ease);
+}
+.lh-search-modal-d5.lh-is-open-d5 .lh-search-modal-panel-d5{transform:translateY(0);}
+.lh-search-modal-form-d5{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1 1 auto;
+  min-width:0;
+}
+.lh-search-modal-icon-d5{width:18px;height:18px;color:var(--ink-mute);flex:0 0 auto;}
+.lh-search-modal-input-d5{
+  flex:1 1 auto;
+  min-width:0;
+  height:24px;
+  border:0;
+  background:none;
+  font-family:inherit;
+  font-size:16px;
+  color:var(--ink);
+  -webkit-appearance:none;
+  appearance:none;
+}
+.lh-search-modal-input-d5::placeholder{color:var(--ink-mute);}
+.lh-search-modal-input-d5::-webkit-search-cancel-button{display:none;}
+.lh-search-modal-close-d5{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:30px;height:30px;
+  color:var(--ink-soft);
+  transition:color .2s var(--ease);
+}
+.lh-search-modal-close-d5:hover{color:var(--brand);}
+
+/* ==========================================================================
+   Language switcher
+   ========================================================================== */
+.lh-lang-d5{position:relative;flex:0 0 auto;margin-left:8px;}
+.lh-lang-toggle-d5{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:34px;
+  padding:0 12px;
+  font-size:14px;
+  color:#fff;
+  border:1px solid #ffffff38;
+  border-radius:3px;
+  transition:border-color .25s var(--ease),color .25s var(--ease);
+}
+.lh-lang-toggle-d5 img{width:20px;height:auto;}
+.lh-lang-d5:hover .lh-lang-toggle-d5,
+.lh-lang-d5.lh-is-open-d5 .lh-lang-toggle-d5{color:var(--brand);border-color:var(--brand);}
+.lh-lang-d5:hover .lh-caret-d5,
+.lh-lang-d5.lh-is-open-d5 .lh-caret-d5{transform:translateY(1px) rotate(-135deg);}
+
+.lh-lang-menu-d5{
+  position:absolute;
+  top:calc(100% + 10px);
+  right:0;
+  min-width:170px;
+  padding:6px 0;
+  background:var(--bg);
+  border-top:2px solid var(--brand);
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  z-index: 1111;
+  transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;
+}
+.lh-lang-d5:hover .lh-lang-menu-d5,
+.lh-lang-d5.lh-is-open-d5 .lh-lang-menu-d5{opacity:1;visibility:visible;transform:translateY(0);}
+.lh-lang-menu-d5 a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 16px;
+  font-size:14px;
+  color:var(--ink-soft);
+  transition:color .2s var(--ease),background .2s var(--ease);
+}
+.lh-lang-menu-d5 a:hover{color:var(--brand);background:var(--bg-soft);}
+.lh-lang-menu-d5 img{width:20px;height:auto;}
+
+/* ==========================================================================
+   Burger
+   ========================================================================== */
+.lh-burger-d5{
+  display:none;
+  flex: 0 0 auto;
+    width: 43px;
+    height: 30px;
+    position: relative;
+    border: 1px solid #ffffff38;
+    padding: 8px 10px;
+    border-radius: 3px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.lh-burger-d5 span{
+  width:100%;height:1.5px;
+  background:#fff;
+  transition:transform .3s var(--ease),opacity .2s var(--ease),top .3s var(--ease);
+}
+
+/* Page spacer so page content is not hidden behind the fixed header */
+.lh-header-spacer-d5{height:var(--header-h);}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width:1400px){
+  .lh-nav-link-d5{padding:0 16px;font-size:14px;}
+  .lh-nav-link-d5::after{left:16px;right:16px;}
+  .lh-logo-d5 img{width:130px;}
+  .lh-header-inner-d5{padding:0 24px;}
+  .lh-mega-inner-d5,.lh-mega-quick-inner-d5{padding-left:24px;padding-right:24px;}
+  .lh-search-d5{flex-basis:170px;}
+}
+
+@media (max-width:1100px){
+  :root{--header-h:var(--header-h-sm);}
+  .lh-header-spacer-d5{height:var(--header-h-sm);}
+  .lh-header-inner-d5{height:var(--header-h-sm);gap:14px;padding:0 18px;}
+  .lh-site-header-d5.lh-is-stuck-d5 .lh-header-inner-d5{height:var(--header-h-sm);}
+  .lh-logo-d5 img{width:118px;}
+  .lh-burger-d5{display:flex;}
+  .lh-nav-item-d5.lh-is-open-d5>.lh-dropdown-d5{
+    transform: none;
+  }
+  /* Mobile nav panel: a dark, full-width panel that drops open in place
+     directly under the fixed header (classic Bootstrap navbar-collapse),
+     not an off-canvas side drawer. These custom properties re-theme every
+     nested dropdown/mega element for free since they already read
+     color/background from the same --ink/--bg tokens. */
+  .lh-main-nav-d5{
+    --ink:#fff;
+    --ink-soft:#c7c7c7;
+    --ink-mute:#8a8a8a;
+    --bg-soft:#1c1c1c;
+    --line:#333333;
+    --line-soft:#2a2a2a;
+
+    position:fixed;
+    top:var(--header-h-sm);
+    left:0;right:0;
+    z-index:950;
+    margin:0;
+    padding:0;
+    max-height:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    background:#111;
+    box-shadow:0 14px 28px rgba(0,0,0,.35);
+    transition:max-height .35s var(--ease);
+  }
+  .lh-main-nav-d5.lh-is-open-d5{max-height:calc(100vh - var(--header-h-sm));}
+  .lh-nav-list-d5{display:block;}
+  .lh-nav-item-d5{border-bottom:1px solid var(--line-soft);}
+
+  .lh-nav-link-d5{
+    height:auto;
+    justify-content:space-between;
+    padding:16px 22px;
+    font-size:15px;
+  }
+  .lh-site-header-d5.lh-is-stuck-d5 .lh-nav-link-d5{height:auto;}
+  .lh-nav-link-d5::after{display:none;}
+  .lh-caret-d5{transform:translateX(-2px) rotate(45deg);}
+  .lh-nav-item-d5.lh-is-open-d5>.lh-nav-link-d5 .lh-caret-d5{transform:translateX(-2px) rotate(-135deg);}
+
+  /* Accordion panels */
+  .lh-dropdown-d5,
+  .lh-mega-d5{
+    position:static;
+    left:auto;right:auto;top:auto;
+    width:auto;
+    min-width:0;
+    max-height:0;
+    padding:0;
+    overflow:hidden;
+    background:var(--bg-soft);
+    border:0;
+    box-shadow:none;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    transition:max-height .4s var(--ease);
+  }
+  .lh-nav-item-d5:hover>.lh-dropdown-d5,
+  .lh-nav-item-d5:hover>.lh-mega-d5{max-height:0;}
+  /* .lh-is-open-d5 max-height is set inline by JS to the panel's real
+     scrollHeight, so the open/close transition timing matches the
+     actual content instead of a guessed fixed value that can either
+     look too fast/slow or clip taller panels. */
+
+  .lh-dropdown-d5 a{padding:12px 30px;}
+  .lh-dropdown-d5 a:hover{padding-left:34px;}
+  .lh-dropdown-sub-d5{padding:0 30px 10px;}
+
+  .lh-mega-inner-d5{
+    display:block;
+    padding:14px 22px 10px;
+    max-height:none;
+    overflow:visible;
+  }
+  .lh-mega-col-d5 + .lh-mega-col-d5{
+    border-left:0;
+    border-top:1px solid var(--line);
+    padding-left:0;
+    padding-top:18px;
+    margin-top:18px;
+  }
+  .lh-mega-quick-inner-d5{padding:14px 22px;gap:8px 22px;}
+  .lh-solution-logos-d5{grid-template-columns:repeat(4,1fr);}
+  .lh-news-cards-d5{grid-template-columns:repeat(3,1fr);}
+
+  /* Mobile hides the third menu level (only brand + category links show,
+     not the individual items under them). */
+  .lh-dropdown-sub-d5{display:none;}
+  .lh-mega-group-d5{margin-bottom:0;}
+  .lh-mega-group-d5 > a{margin-bottom:0;padding:10px 0;}
+  .lh-mega-group-d5 ul{display:none;}
+
+  .lh-lang-d5{margin-left:auto;}
+  .lh-lang-toggle-d5{height:30px;padding:0 8px;font-size:13px;}
+  /* Hide the "English" label here (not just at 520px) so the lang
+     switcher doesn't hog the width the search bar needs on phones. */
+  .lh-lang-toggle-d5 span:not(.lh-caret-d5){display:none;}
+
+  /* The inline search box doesn't have room on mobile; collapse it to
+     just its icon button, which JS turns into a trigger that opens
+     the search modal instead of submitting the (hidden) input. */
+  .lh-search-d5{flex:0 0 auto;width:34px;height:30px;border:0;}
+  .lh-search-input-d5{display:none;}
+  .lh-search-btn-d5{width:100%;}
+}
+
+@media (max-width:520px){
+  .lh-news-cards-d5{grid-template-columns:1fr;}
+  .lh-solution-logos-d5{grid-template-columns:1fr 1fr;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important;}
+}
