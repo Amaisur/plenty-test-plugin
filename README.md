@@ -5,8 +5,8 @@ homepage (`/`) with a hardcoded static demo page.
 
 ## Structure
 
-- `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`, points at `config.json`)
-- `config.json` — the two backend-editable settings for the header search form (`searchAction`, `searchParam`); see note below
+- `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`)
+- `config.json` — the two backend-editable settings for the header search form (`searchAction`, `searchParam`); auto-detected by plentymarkets from its filename/location at the plugin root — it does **not** need to be referenced from `plugin.json` (an unrecognized `"config"` key there can fail plugin validation and silently fall back to the shop's default homepage)
 - `composer.json` — PSR-4 autoload mapping (`PlentyTestPlugin\` → `src/`)
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
 - `src/Controllers/DemoHomeController.php` — renders the demo template, passing header content + search config into Twig
