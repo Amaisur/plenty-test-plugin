@@ -72,7 +72,7 @@
   nextBtn.addEventListener('click', next);
   prevBtn.addEventListener('click', prev);
   tabs.forEach(function (t, n) {
-    t.addEventListener('click', function () { goTo(n); });
+    t.addEventListener('mouseenter', function () { goTo(n); });
   });
 
   hero.addEventListener('keydown', function (e) {
