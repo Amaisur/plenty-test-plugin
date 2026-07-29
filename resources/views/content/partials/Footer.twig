@@ -1,0 +1,99 @@
+{#
+  Storefront footer, driven by the `footer` array (built in
+  PlentyTestPlugin\Configs\FooterConfig). Edit that file to change columns,
+  social links, legal links or the subscribe form fields — this file only
+  renders it.
+
+  NOTE: the "Subscribe" inquiry form has no working submit target — see the
+  comment at the top of FooterConfig.php.
+#}
+<link rel="stylesheet" href="{{ plugin_path('PlentyTestPlugin') }}/css/footer.css">
+
+<footer class="lf-site-footer-d5" id="siteFooter">
+  <div class="lf-footer-main-d5">
+    <div class="lf-footer-inner-d5">
+
+      <div class="lf-footer-brand-d5">
+        <a class="lf-footer-logo-d5" href="{{ footer.logo.href }}" aria-label="{{ footer.logo.alt }} home">
+          <img src="{{ footer.logo.src }}" alt="{{ footer.logo.alt }}">
+        </a>
+
+        <button class="lf-subscribe-btn-d5" id="subscribeBtn" type="button">{{ footer.subscribe.label }}</button>
+
+        <ul class="lf-social-d5">
+          {% for link in footer.social %}
+            <li>
+              <a href="{{ link.href }}" aria-label="{{ link.label }}" target="_blank" rel="noopener noreferrer">
+                {% if link.icon == 'facebook' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.57 14.2 3.57c-2.4 0-4.1 1.47-4.1 4.16v2.16H7.4v3.1h2.7V21h3.4z"/></svg>
+                {% elseif link.icon == 'twitter' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 5.9c-.7.3-1.4.55-2.2.65a3.8 3.8 0 0 0 1.67-2.1c-.74.44-1.56.76-2.44.94A3.8 3.8 0 0 0 11.4 8.9c0 .3.03.6.1.87A10.8 10.8 0 0 1 3.6 5.1a3.8 3.8 0 0 0 1.18 5.07 3.77 3.77 0 0 1-1.72-.47v.05c0 1.85 1.32 3.4 3.06 3.75a3.8 3.8 0 0 1-1.71.07 3.8 3.8 0 0 0 3.55 2.64A7.63 7.63 0 0 1 2 18.57 10.77 10.77 0 0 0 7.84 20.3c7 0 10.83-5.8 10.83-10.83l-.01-.5c.74-.53 1.38-1.2 1.89-1.96a10.6 10.6 0 0 1-2.55.7z"/></svg>
+                {% elseif link.icon == 'linkedin' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3.25a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM20.44 20h.01v-6.4c0-3.13-.67-5.54-4.33-5.54-1.76 0-2.94.96-3.42 1.88h-.05V8.5H9.44V20h3.38v-5.7c0-1.5.28-2.95 2.14-2.95 1.83 0 1.86 1.71 1.86 3.05V20h3.62z"/></svg>
+                {% elseif link.icon == 'youtube' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.6 7.6a2.9 2.9 0 0 0-2.05-2.06C17.8 5 12 5 12 5s-5.8 0-7.55.54A2.9 2.9 0 0 0 2.4 7.6 30.6 30.6 0 0 0 1.86 12a30.6 30.6 0 0 0 .54 4.4 2.9 2.9 0 0 0 2.05 2.06C6.2 19 12 19 12 19s5.8 0 7.55-.54a2.9 2.9 0 0 0 2.05-2.06c.36-1.44.54-2.92.54-4.4a30.6 30.6 0 0 0-.54-4.4zM9.9 15.02V8.98L15.4 12l-5.5 3.02z"/></svg>
+                {% elseif link.icon == 'instagram' %}
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.15.26-2.91.56a5.9 5.9 0 0 0-2.13 1.39A5.9 5.9 0 0 0 .62 4.14c-.3.76-.5 1.63-.56 2.91C0 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.3.79.71 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.63.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.63.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.63-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% for column in footer.columns %}
+        <div class="lf-footer-col-d5">
+          <h4 class="lf-footer-heading-d5">{{ column.heading }}</h4>
+          <ul class="lf-footer-links-d5">
+            {% for link in column.links %}
+              <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <div class="lf-footer-bottom-d5">
+    <div class="lf-footer-bottom-inner-d5">
+      <p class="lf-footer-copyright-d5">Copyright &copy; {{ footer.copyright.startYear }}-{{ "now"|date("Y") }} {{ footer.copyright.owner }}</p>
+      <ul class="lf-footer-legal-d5">
+        {% for link in footer.legalLinks %}
+          <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<div class="lf-subscribe-modal-d5" id="subscribeModal" role="dialog" aria-modal="true" aria-label="{{ footer.subscribe.label }}">
+  <div class="lf-subscribe-panel-d5">
+    <button class="lf-subscribe-close-d5" id="subscribeClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false">
+        <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></line>
+        <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></line>
+      </svg>
+    </button>
+    <h3 class="lf-subscribe-title-d5">{{ footer.subscribe.label }}</h3>
+    {# No `action`/handler wired up yet — see the note at the top of FooterConfig.php. #}
+    <form class="lf-subscribe-form-d5" onsubmit="return false;">
+      {% for field in footer.subscribe.fields %}
+        <label class="lf-subscribe-field-d5">
+          <span>{{ field.label }}</span>
+          {% if field.type == 'textarea' %}
+            <textarea name="{{ field.name }}" rows="3"></textarea>
+          {% else %}
+            <input type="{{ field.type }}" name="{{ field.name }}">
+          {% endif %}
+        </label>
+      {% endfor %}
+      <div class="lf-subscribe-actions-d5">
+        <button type="submit" class="lf-subscribe-submit-d5">{{ footer.subscribe.submitLabel }}</button>
+        <button type="button" class="lf-subscribe-cancel-d5" id="subscribeCancel">{{ footer.subscribe.cancelLabel }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="{{ plugin_path('PlentyTestPlugin') }}/js/footer.js"></script>

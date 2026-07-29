@@ -8,15 +8,24 @@ homepage (`/`) with a hardcoded static demo page.
 - `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`)
 - `composer.json` — PSR-4 autoload mapping (`PlentyTestPlugin\` → `src/`)
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
-- `src/Controllers/DemoHomeController.php` — renders the demo template, passing header + hero content into Twig
+- `src/Controllers/DemoHomeController.php` — renders the demo template, passing header + hero + footer content into Twig
 - `src/Configs/HeaderConfig.php` — all header content (logo, nav labels/links, mega menu, language switcher, search copy) as a plain PHP array; edit this to change what the header shows, never the Twig
 - `src/Configs/HeroConfig.php` — the homepage hero slider's slides (image, link, series label, title) as a plain PHP array
-- `resources/views/content/Home.twig` — the homepage content; includes the header and hero partials
+- `src/Configs/FooterConfig.php` — the footer's link columns, social links, legal links, copyright and "Subscribe" form fields as a plain PHP array (mirrors lumi.cn's own footer content)
+- `resources/views/content/Home.twig` — the homepage content; includes the header, hero, and footer partials
 - `resources/views/content/partials/Header.twig` — renders `HeaderConfig`'s data into the LUMI-style sticky header/mega-menu markup
 - `resources/views/content/partials/Hero.twig` — renders `HeroConfig`'s slides into the autoplaying hero slider (desktop tab bar + mobile swipe carousel)
+- `resources/views/content/partials/Footer.twig` — renders `FooterConfig`'s data into the footer + its "Subscribe" modal
 - `resources/css/demo-home.css` / `resources/js/demo-home.js` — homepage styles/behavior (external files, not inline — see note below)
 - `resources/css/header.css` / `resources/js/header.js` — header styles/behavior (external files, not inline — see note below)
 - `resources/css/hero.css` / `resources/js/hero.js` — hero slider styles/behavior (external files, not inline — see note below)
+- `resources/css/footer.css` / `resources/js/footer.js` — footer styles/behavior, including the subscribe modal open/close (external files, not inline — see note below)
+
+## Footer content
+
+- Column links, social links, legal links, copyright and the subscribe form's field list all live in `src/Configs/FooterConfig.php`, matching lumi.cn's actual footer content (verified from the live site, not invented).
+- The "Subscribe" button opens a modal with the same fields lumi.cn's inquiry form has (name, country, company, email, product, question). **The form doesn't submit anywhere** — lumi.cn's version posts to their internal CRM, which isn't something this plugin has access to. `Footer.twig`'s `<form>` has `onsubmit="return false;"` as a placeholder; wire up a real `action` (or an AJAX call to your own backend) before relying on it to actually capture inquiries.
+- The footer's visual design (dark background, spacing, typography) reuses the header's design tokens (`--brand`, `--ink`, `--font`, etc.) for consistency, but was built fresh rather than copied from lumi.cn's actual CSS, since only the content/structure was fetched, not their stylesheet.
 
 ## Header content & search
 
