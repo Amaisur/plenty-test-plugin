@@ -1,0 +1,57 @@
+{#
+  Homepage hero slider, driven by the `hero` array (built in
+  PlentyTestPlugin\Configs\HeroConfig). Edit that file to add/change/reorder
+  slides — this file only renders it.
+#}
+<link rel="stylesheet" href="{{ plugin_path('PlentyTestPlugin') }}/css/hero.css">
+
+<section class="hero" id="hero" tabindex="-1" aria-roledescription="carousel" aria-label="Featured series">
+
+  <div class="hero-viewport" id="heroViewport">
+    <ul class="hero-track" id="heroTrack">
+      {% for slide in hero.slides %}
+        <li class="hero-slide">
+          <a href="{{ slide.href }}">
+            <picture>
+              <source media="(max-width: 1100px)" srcset="{{ slide.imgMobile|default(slide.img) }}">
+              <img src="{{ slide.img }}"
+                   alt="{{ slide.series }} — {{ slide.title }}"
+                   {% if not loop.first %}loading="lazy"{% endif %}>
+            </picture>
+            <div class="hero-caption">
+              <span>{{ slide.series }}</span>
+              <strong>{{ slide.title }}</strong>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <button class="hero-arrow hero-arrow--prev" id="heroPrev" type="button" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="20" y1="12" x2="4" y2="12"></line><polyline points="11 5 4 12 11 19"></polyline>
+    </svg>
+  </button>
+
+  <button class="hero-arrow hero-arrow--next" id="heroNext" type="button" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="4" y1="12" x2="20" y2="12"></line><polyline points="13 5 20 12 13 19"></polyline>
+    </svg>
+  </button>
+
+  <div class="hero-tabs">
+    <div class="hero-tabs-inner" id="heroTabs">
+      {% for slide in hero.slides %}
+        <button class="hero-tab{% if loop.first %} is-active{% endif %}" type="button">
+          <i class="hero-bar"><i></i></i>
+          <span class="hero-tab-series">{{ slide.series }}</span>
+          <span class="hero-tab-title">{{ slide.title }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+<script src="{{ plugin_path('PlentyTestPlugin') }}/js/hero.js"></script>
