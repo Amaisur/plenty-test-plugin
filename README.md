@@ -6,10 +6,9 @@ homepage (`/`) with a hardcoded static demo page.
 ## Structure
 
 - `plugin.json` — plugin manifest (namespace, service provider, dependency on `IO`)
-- `config.json` — the two backend-editable settings for the header search form (`searchAction`, `searchParam`); auto-detected by plentymarkets from its filename/location at the plugin root — it does **not** need to be referenced from `plugin.json` (an unrecognized `"config"` key there can fail plugin validation and silently fall back to the shop's default homepage)
 - `composer.json` — PSR-4 autoload mapping (`PlentyTestPlugin\` → `src/`)
 - `src/Providers/PlentyTestPluginServiceProvider.php` — boots the plugin, registers a route override for `/`
-- `src/Controllers/DemoHomeController.php` — renders the demo template, passing header content + search config into Twig
+- `src/Controllers/DemoHomeController.php` — renders the demo template, passing header + hero content into Twig
 - `src/Configs/HeaderConfig.php` — all header content (logo, nav labels/links, mega menu, language switcher, search copy) as a plain PHP array; edit this to change what the header shows, never the Twig
 - `src/Configs/HeroConfig.php` — the homepage hero slider's slides (image, link, series label, title) as a plain PHP array
 - `resources/views/content/Home.twig` — the homepage content; includes the header and hero partials
@@ -22,7 +21,7 @@ homepage (`/`) with a hardcoded static demo page.
 ## Header content & search
 
 - All header text/links (nav, mega menu columns, language switcher, logo) live in `src/Configs/HeaderConfig.php` as a plain array — change the array, not `Header.twig`, to edit content.
-- The search form submits a normal GET request to `searchAction` (default `/search`) with the query in the `searchParam` field (default `query`), matching `IO\Controllers\ItemSearchController::showSearch()`, which reads `request->get('query')`. Both are overridable per-shop from **Plugin → Configuration** (defined in `config.json`) without redeploying, since the search route slug can differ between shops/languages.
+- The search form submits a normal GET request to `/search` with the query in the `query` field, matching `IO\Controllers\ItemSearchController::showSearch()`, which reads `request->get('query')`. Both values are hardcoded in `DemoHomeController::show()` rather than pulled from a `config.json` backend setting — a `config.json` was tried here and repeatedly failed plugin validation with no visible error (the plugin just silently fell back to the shop's default homepage), so it was removed to eliminate that as a variable. If you want these backend-editable again, reintroduce `config.json` on its own afterward, deploy, and confirm the plugin still loads before adding anything else on top of it.
 
 ## How it works
 
