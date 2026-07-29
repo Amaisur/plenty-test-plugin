@@ -35,7 +35,7 @@
 .lh-site-header-d5 ul{margin:0;padding:0;list-style:none;}
 .lh-site-header-d5 a{text-decoration:none;}
 .lh-site-header-d5 img{display:block;max-width:100%;border:0;}
-.lh-site-header-d5 button.lh-search-btn-d5{border-radius:3px;#fff;background:none;border:1px solid #ffffff38;padding:0;cursor:pointer;}
+.lh-site-header-d5 button.lh-search-btn-d5{border-radius:3px;background:none;border:1px solid #ffffff38;padding:0;cursor:pointer;}
 .lh-site-header-d5 :focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
 .lh-site-header-d5.lh-is-stuck-d5{box-shadow:0 2px 14px rgba(0,0,0,.09);}
 
