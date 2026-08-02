@@ -1,18 +1,16 @@
-(function () {
-  'use strict';
+document.addEventListener('DOMContentLoaded', () => {
+  const href = 'https://shopfy-features.myshopify.com/cdn/shop/t/2/assets/d5-style.css?v=' + Date.now();
 
-  var href = 'https://shopfy-features.myshopify.com/cdn/shop/t/2/assets/d5-style.css?v=' + Date.now();
-
-  var existing = document.querySelector('link[data-d5-style]');
+  const existing = document.querySelector('link[data-d5-style]');
   if (existing) existing.remove();
 
-  var link = document.createElement('link');
+  const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = href;
   link.setAttribute('data-d5-style', 'true');
 
   document.head.appendChild(link);
-})();
+});
 
 (function () {
   'use strict';
