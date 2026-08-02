@@ -1,10 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const href = 'https://shopfy-features.myshopify.com/cdn/shop/t/2/assets/d5-style.css?v=' + Date.now();
+(function loadD5Style(fn) {
+  // This script tag loads late enough on the page that DOMContentLoaded
+  // has usually already fired by the time we get here — registering for
+  // it then would never call back. Run immediately if the DOM is already
+  // parsed, and only wait on the event if it genuinely hasn't fired yet.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    fn();
+  }
+})(function () {
+  var href = 'https://shopfy-features.myshopify.com/cdn/shop/t/2/assets/d5-style.css?v=' + Date.now();
 
-  const existing = document.querySelector('link[data-d5-style]');
+  var existing = document.querySelector('link[data-d5-style]');
   if (existing) existing.remove();
 
-  const link = document.createElement('link');
+  var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = href;
   link.setAttribute('data-d5-style', 'true');
