@@ -1,0 +1,55 @@
+:root{
+  --brand:#f08300;
+  --font:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+.ls-sidebar-d5{
+  position:fixed;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:900;
+  display:flex;
+  flex-direction:column;
+  font-family:var(--font);
+}
+.ls-sidebar-d5 *,.ls-sidebar-d5 *::before,.ls-sidebar-d5 *::after{box-sizing:border-box;}
+
+.ls-sidebar-item-d5{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  width:64px;
+  height:64px;
+  padding:0;
+  color:#fff;
+  background:rgba(20,16,12,.72);
+  border:0;
+  border-top:1px solid rgba(255,255,255,.12);
+  cursor:pointer;
+  text-decoration:none;
+  transition:background .2s var(--ease);
+}
+.ls-sidebar-item-d5:first-child{border-top:0;}
+.ls-sidebar-item-d5:hover{background:var(--brand);}
+
+.ls-sidebar-icon-d5{display:block;width:20px;height:20px;}
+.ls-sidebar-icon-d5 svg{width:100%;height:100%;}
+
+.ls-sidebar-label-d5{
+  font-size:10px;
+  line-height:1.2;
+  text-align:center;
+  white-space:nowrap;
+}
+
+@media (max-width:760px){
+  .ls-sidebar-d5{display:none;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ls-sidebar-item-d5{transition-duration:.01ms;}
+}

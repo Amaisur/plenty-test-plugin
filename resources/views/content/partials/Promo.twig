@@ -1,0 +1,23 @@
+{#
+  Two-panel promo banner below the hero ("New Arrival" / "Marketing
+  Support" on lumi.cn), driven by the `promo` array (built in
+  PlentyTestPlugin\Configs\PromoConfig). Edit that file to change
+  images/links/labels — this file only renders it.
+#}
+<link rel="stylesheet" href="{{ plugin_path('PlentyTestPlugin') }}/css/promo.css">
+
+<section class="lp-promo-d5">
+  <div class="lp-promo-inner-d5">
+    {% for panel in promo.panels %}
+      <a class="lp-promo-panel-d5" href="{{ panel.href }}">
+        <span class="lp-promo-media-d5">
+          <img src="{{ panel.img }}" alt="{{ panel.label }}" loading="lazy">
+          {% if panel.tagline %}
+            <span class="lp-promo-tagline-d5">{{ panel.tagline }}</span>
+          {% endif %}
+        </span>
+        <span class="lp-promo-label-d5">{{ panel.label }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
