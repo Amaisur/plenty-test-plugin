@@ -2,10 +2,19 @@
 
 namespace PlentyTestPlugin\Configs;
 
+use Plenty\Plugin\ConfigRepository;
+
 /**
  * Content for the storefront footer, mirroring lumi.cn's footer:
  * link columns, social links, legal/bottom links, copyright, and the
  * "Subscribe" inquiry form fields.
+ *
+ * Editable from the plentymarkets backend under Plugins -> PlentyTestPlugin
+ * -> Configuration ("Footer" section). Simple/fixed-shape fields (logo,
+ * social hrefs, legal links, copyright, subscribe labels) are individual
+ * text settings; the link columns and the subscribe field list are each a
+ * single JSON-array text field, since plugin config has no repeater field
+ * type. A blank or invalid field falls back to defaults() below.
  *
  * The inquiry form has no working submit target here — lumi.cn's own
  * version posts to their internal CRM, which this plugin has no access to.
@@ -15,7 +24,49 @@ namespace PlentyTestPlugin\Configs;
  */
 class FooterConfig
 {
-    public static function get(): array
+    public static function get(ConfigRepository $config): array
+    {
+        $defaults = self::defaults();
+
+        return [
+            'logo' => [
+                'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLogoHref', $defaults['logo']['href']),
+                'src'  => ConfigHelper::text($config, 'PlentyTestPlugin.footerLogoSrc', $defaults['logo']['src']),
+                'alt'  => ConfigHelper::text($config, 'PlentyTestPlugin.footerLogoAlt', $defaults['logo']['alt']),
+            ],
+
+            'columns' => ConfigHelper::json($config, 'PlentyTestPlugin.footerColumnsJson', $defaults['columns']),
+
+            'subscribe' => [
+                'label'       => ConfigHelper::text($config, 'PlentyTestPlugin.footerSubscribeLabel', $defaults['subscribe']['label']),
+                'fields'      => ConfigHelper::json($config, 'PlentyTestPlugin.footerSubscribeFieldsJson', $defaults['subscribe']['fields']),
+                'submitLabel' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSubmitLabel', $defaults['subscribe']['submitLabel']),
+                'cancelLabel' => ConfigHelper::text($config, 'PlentyTestPlugin.footerCancelLabel', $defaults['subscribe']['cancelLabel']),
+            ],
+
+            'social' => [
+                ['label' => 'Facebook', 'icon' => 'facebook', 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSocialFacebook', $defaults['social'][0]['href'])],
+                ['label' => 'Twitter', 'icon' => 'twitter', 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSocialTwitter', $defaults['social'][1]['href'])],
+                ['label' => 'LinkedIn', 'icon' => 'linkedin', 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSocialLinkedin', $defaults['social'][2]['href'])],
+                ['label' => 'YouTube', 'icon' => 'youtube', 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSocialYoutube', $defaults['social'][3]['href'])],
+                ['label' => 'Instagram', 'icon' => 'instagram', 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerSocialInstagram', $defaults['social'][4]['href'])],
+            ],
+
+            'legalLinks' => [
+                ['label' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalDmcaLabel', $defaults['legalLinks'][0]['label']), 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalDmcaHref', $defaults['legalLinks'][0]['href'])],
+                ['label' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalPrivacyLabel', $defaults['legalLinks'][1]['label']), 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalPrivacyHref', $defaults['legalLinks'][1]['href'])],
+                ['label' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalSitemapLabel', $defaults['legalLinks'][2]['label']), 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalSitemapHref', $defaults['legalLinks'][2]['href'])],
+                ['label' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalContactLabel', $defaults['legalLinks'][3]['label']), 'href' => ConfigHelper::text($config, 'PlentyTestPlugin.footerLegalContactHref', $defaults['legalLinks'][3]['href'])],
+            ],
+
+            'copyright' => [
+                'startYear' => ConfigHelper::int($config, 'PlentyTestPlugin.footerCopyrightStartYear', $defaults['copyright']['startYear']),
+                'owner'     => ConfigHelper::text($config, 'PlentyTestPlugin.footerCopyrightOwner', $defaults['copyright']['owner']),
+            ],
+        ];
+    }
+
+    private static function defaults(): array
     {
         return [
             'logo' => [

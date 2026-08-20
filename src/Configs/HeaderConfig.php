@@ -2,16 +2,56 @@
 
 namespace PlentyTestPlugin\Configs;
 
+use Plenty\Plugin\ConfigRepository;
+
 /**
  * Content for the LUMI-style storefront header.
  *
- * Everything the Header.twig partial prints (logo, nav labels/links, mega
- * menu columns, language switcher, search copy) lives here as plain data so
- * editing the header never means touching Twig/HTML markup.
+ * Every field is editable from the plentymarkets backend under
+ * Plugins -> PlentyTestPlugin -> Configuration (see config.json, "Header"
+ * section). Simple fields (logo, search copy, current-language label) are
+ * individual text settings; the nav menu and the language list are each a
+ * single JSON-array text field, since plentymarkets plugin config has no
+ * repeater/array field type. Whatever is left blank (or fails to parse as
+ * JSON) falls back to the defaults() below, so a bad edit never breaks the
+ * page — it just reverts that one field to its built-in value.
  */
 class HeaderConfig
 {
-    public static function get(): array
+    public static function get(ConfigRepository $config): array
+    {
+        $defaults = self::defaults();
+
+        return [
+            'logo' => [
+                'href' => ConfigHelper::text($config, 'PlentyTestPlugin.headerLogoHref', $defaults['logo']['href']),
+                'src'  => ConfigHelper::text($config, 'PlentyTestPlugin.headerLogoSrc', $defaults['logo']['src']),
+                'alt'  => ConfigHelper::text($config, 'PlentyTestPlugin.headerLogoAlt', $defaults['logo']['alt']),
+            ],
+
+            'nav' => ConfigHelper::json($config, 'PlentyTestPlugin.headerNavJson', $defaults['nav']),
+
+            'languages' => [
+                'current' => [
+                    'label' => ConfigHelper::text($config, 'PlentyTestPlugin.headerLangCurrentLabel', $defaults['languages']['current']['label']),
+                    'flag'  => ConfigHelper::text($config, 'PlentyTestPlugin.headerLangCurrentFlag', $defaults['languages']['current']['flag']),
+                ],
+                'options' => ConfigHelper::json($config, 'PlentyTestPlugin.headerLanguagesJson', $defaults['languages']['options']),
+            ],
+
+            'search' => [
+                'placeholder' => ConfigHelper::text($config, 'PlentyTestPlugin.headerSearchPlaceholder', $defaults['search']['placeholder']),
+                'action'      => ConfigHelper::text($config, 'PlentyTestPlugin.headerSearchAction', $defaults['search']['action']),
+                'param'       => ConfigHelper::text($config, 'PlentyTestPlugin.headerSearchParam', $defaults['search']['param']),
+            ],
+        ];
+    }
+
+    /**
+     * Built-in fallback content — also what a fresh install shows before
+     * anyone has touched the backend configuration.
+     */
+    private static function defaults(): array
     {
         return [
             'logo' => [
@@ -240,6 +280,8 @@ class HeaderConfig
 
             'search' => [
                 'placeholder' => 'Search products',
+                'action'      => '/search',
+                'param'       => 'query',
             ],
         ];
     }

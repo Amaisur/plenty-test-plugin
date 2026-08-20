@@ -2,21 +2,33 @@
 
 namespace PlentyTestPlugin\Configs;
 
+use Plenty\Plugin\ConfigRepository;
+
 /**
  * Content for the homepage hero slider.
  *
- * Each slide needs `href`, `img` (desktop), `series` (small label) and
- * `title` (the headline) — the Hero.twig partial renders both the slide and
- * its matching desktop tab from the same entry, so there is only one place
- * to edit per slide.
+ * Editable from the plentymarkets backend under Plugins -> PlentyTestPlugin
+ * -> Configuration ("Hero" section) as a single JSON-array text field,
+ * since plugin config has no repeater field type. Each slide needs `href`,
+ * `img` (desktop), `series` (small label) and `title` (the headline); the
+ * Hero.twig partial renders both the slide and its matching desktop tab
+ * from the same entry. `imgMobile` is optional: a portrait-cropped image
+ * to show on screens <=1100px — omit/leave blank to fall back to `img`.
  *
- * `imgMobile` is optional: set it to a portrait-cropped image to show on
- * screens <=1100px (the same breakpoint the header collapses at); leave it
- * `null` to fall back to the desktop `img` on mobile too.
+ * A blank or invalid JSON field falls back to defaults() below.
  */
 class HeroConfig
 {
-    public static function get(): array
+    public static function get(ConfigRepository $config): array
+    {
+        $defaults = self::defaults();
+
+        return [
+            'slides' => ConfigHelper::json($config, 'PlentyTestPlugin.heroSlidesJson', $defaults['slides']),
+        ];
+    }
+
+    private static function defaults(): array
     {
         return [
             'slides' => [

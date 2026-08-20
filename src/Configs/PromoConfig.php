@@ -2,14 +2,42 @@
 
 namespace PlentyTestPlugin\Configs;
 
+use Plenty\Plugin\ConfigRepository;
+
 /**
  * Content for the two-panel promo banner shown right below the hero
- * ("New Arrival" / "Marketing Support" on lumi.cn). Edit this array to
- * change the images, links or labels — Promo.twig only renders it.
+ * ("New Arrival" / "Marketing Support" on lumi.cn).
+ *
+ * Editable from the plentymarkets backend under Plugins -> PlentyTestPlugin
+ * -> Configuration ("Promo" section). Fixed at two panels, so each field is
+ * a plain text setting rather than a JSON blob. Blank fields fall back to
+ * defaults() below.
  */
 class PromoConfig
 {
-    public static function get(): array
+    public static function get(ConfigRepository $config): array
+    {
+        $defaults = self::defaults();
+
+        return [
+            'panels' => [
+                [
+                    'href'    => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel1Href', $defaults['panels'][0]['href']),
+                    'img'     => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel1Img', $defaults['panels'][0]['img']),
+                    'tagline' => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel1Tagline', $defaults['panels'][0]['tagline']),
+                    'label'   => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel1Label', $defaults['panels'][0]['label']),
+                ],
+                [
+                    'href'    => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel2Href', $defaults['panels'][1]['href']),
+                    'img'     => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel2Img', $defaults['panels'][1]['img']),
+                    'tagline' => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel2Tagline', ''),
+                    'label'   => ConfigHelper::text($config, 'PlentyTestPlugin.promoPanel2Label', $defaults['panels'][1]['label']),
+                ],
+            ],
+        ];
+    }
+
+    private static function defaults(): array
     {
         return [
             'panels' => [

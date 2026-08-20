@@ -1,0 +1,324 @@
+{
+  "formatVersion": 1,
+  "menu": {
+    "header": {
+      "label": "Header",
+      "formFields": {
+        "headerLogoHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Logo link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/" }
+        },
+        "headerLogoSrc": {
+          "type": "inputText",
+          "required": false,
+          "label": "Logo image URL",
+          "options": { "defaultValue": "https://hk-portal-web.oss-cn-hongkong.aliyuncs.com/prd/wwwroot/images/logo.svg" }
+        },
+        "headerLogoAlt": {
+          "type": "inputText",
+          "required": false,
+          "label": "Logo alt text",
+          "options": { "defaultValue": "LUMI" }
+        },
+        "headerSearchPlaceholder": {
+          "type": "inputText",
+          "required": false,
+          "label": "Search placeholder text",
+          "options": { "defaultValue": "Search products" }
+        },
+        "headerSearchAction": {
+          "type": "inputText",
+          "required": false,
+          "label": "Search results page path",
+          "options": { "defaultValue": "/search" }
+        },
+        "headerSearchParam": {
+          "type": "inputText",
+          "required": false,
+          "label": "Search query parameter name",
+          "options": { "defaultValue": "query" }
+        },
+        "headerLangCurrentLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Current language label",
+          "options": { "defaultValue": "English" }
+        },
+        "headerLangCurrentFlag": {
+          "type": "inputText",
+          "required": false,
+          "label": "Current language flag image URL",
+          "options": { "defaultValue": "" }
+        },
+        "headerLanguagesJson": {
+          "type": "inputTextArea",
+          "required": false,
+          "label": "Language switcher options (JSON array of {label, href, flag}) — leave blank to use the built-in list",
+          "options": { "defaultValue": "" }
+        },
+        "headerNavJson": {
+          "type": "inputTextArea",
+          "required": false,
+          "label": "Main navigation incl. mega menu (JSON array) — leave blank to use the built-in menu",
+          "options": { "defaultValue": "" }
+        }
+      }
+    },
+    "hero": {
+      "label": "Hero slider",
+      "formFields": {
+        "heroSlidesJson": {
+          "type": "inputTextArea",
+          "required": false,
+          "label": "Hero slides (JSON array of {href, img, imgMobile, series, title}) — leave blank to use the built-in slides",
+          "options": { "defaultValue": "" }
+        }
+      }
+    },
+    "promo": {
+      "label": "Promo banner",
+      "formFields": {
+        "promoPanel1Href": {
+          "type": "inputText",
+          "required": false,
+          "label": "Left panel link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/new-arrivals" }
+        },
+        "promoPanel1Img": {
+          "type": "inputText",
+          "required": false,
+          "label": "Left panel image URL",
+          "options": { "defaultValue": "https://hk-portal-web.oss-cn-hongkong.aliyuncs.com/prd/wwwroot/images/index-img1.png" }
+        },
+        "promoPanel1Tagline": {
+          "type": "inputText",
+          "required": false,
+          "label": "Left panel overlay tagline",
+          "options": { "defaultValue": "COMMITMENT TO INNOVATION SPEED TO MARKET" }
+        },
+        "promoPanel1Label": {
+          "type": "inputText",
+          "required": false,
+          "label": "Left panel label",
+          "options": { "defaultValue": "New Arrival" }
+        },
+        "promoPanel2Href": {
+          "type": "inputText",
+          "required": false,
+          "label": "Right panel link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/resources/marketing-support" }
+        },
+        "promoPanel2Img": {
+          "type": "inputText",
+          "required": false,
+          "label": "Right panel image URL",
+          "options": { "defaultValue": "https://hk-portal-web.oss-cn-hongkong.aliyuncs.com/prd/wwwroot/images/index-img2.png" }
+        },
+        "promoPanel2Tagline": {
+          "type": "inputText",
+          "required": false,
+          "label": "Right panel overlay tagline (optional)",
+          "options": { "defaultValue": "" }
+        },
+        "promoPanel2Label": {
+          "type": "inputText",
+          "required": false,
+          "label": "Right panel label",
+          "options": { "defaultValue": "Marketing Support" }
+        }
+      }
+    },
+    "sidebar": {
+      "label": "Floating sidebar",
+      "formFields": {
+        "sidebarGuideLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "\"How to use\" button label",
+          "options": { "defaultValue": "How to Use" }
+        },
+        "sidebarInquiryLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Inquiry button label",
+          "options": { "defaultValue": "Inquiry" }
+        },
+        "sidebarInquiryHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Inquiry link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/inquiry" }
+        },
+        "sidebarCompareLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Compare button label",
+          "options": { "defaultValue": "Compare" }
+        },
+        "sidebarCompareHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Compare link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/comparepage" }
+        },
+        "sidebarContactLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Contact button label",
+          "options": { "defaultValue": "Contact Us" }
+        },
+        "sidebarContactHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Contact link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/contactus" }
+        }
+      }
+    },
+    "footer": {
+      "label": "Footer",
+      "formFields": {
+        "footerLogoHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Footer logo link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/" }
+        },
+        "footerLogoSrc": {
+          "type": "inputText",
+          "required": false,
+          "label": "Footer logo image URL",
+          "options": { "defaultValue": "https://hk-portal-web.oss-cn-hongkong.aliyuncs.com/prd/wwwroot/images/lumilegend.png" }
+        },
+        "footerLogoAlt": {
+          "type": "inputText",
+          "required": false,
+          "label": "Footer logo alt text",
+          "options": { "defaultValue": "LUMI Legend" }
+        },
+        "footerColumnsJson": {
+          "type": "inputTextArea",
+          "required": false,
+          "label": "Footer link columns (JSON array of {heading, links:[{label, href}]}) — leave blank to use the built-in columns",
+          "options": { "defaultValue": "" }
+        },
+        "footerSubscribeLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Subscribe button label",
+          "options": { "defaultValue": "Subscribe" }
+        },
+        "footerSubmitLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Subscribe form submit button label",
+          "options": { "defaultValue": "Submit" }
+        },
+        "footerCancelLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Subscribe form cancel button label",
+          "options": { "defaultValue": "Cancel" }
+        },
+        "footerSubscribeFieldsJson": {
+          "type": "inputTextArea",
+          "required": false,
+          "label": "Subscribe form fields (JSON array of {name, label, type}) — leave blank to use the built-in fields",
+          "options": { "defaultValue": "" }
+        },
+        "footerSocialFacebook": {
+          "type": "inputText",
+          "required": false,
+          "label": "Facebook URL",
+          "options": { "defaultValue": "https://www.facebook.com/LumiLegend/" }
+        },
+        "footerSocialTwitter": {
+          "type": "inputText",
+          "required": false,
+          "label": "Twitter/X URL",
+          "options": { "defaultValue": "https://twitter.com/#!/Lumi_Legend" }
+        },
+        "footerSocialLinkedin": {
+          "type": "inputText",
+          "required": false,
+          "label": "LinkedIn URL",
+          "options": { "defaultValue": "https://www.linkedin.com/company/lumi-legend-corporation/" }
+        },
+        "footerSocialYoutube": {
+          "type": "inputText",
+          "required": false,
+          "label": "YouTube URL",
+          "options": { "defaultValue": "http://www.youtube.com/user/LumiLegend2005?feature=mhee" }
+        },
+        "footerSocialInstagram": {
+          "type": "inputText",
+          "required": false,
+          "label": "Instagram URL",
+          "options": { "defaultValue": "https://www.instagram.com/lumilegendofficial/" }
+        },
+        "footerLegalDmcaLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "DMCA link label",
+          "options": { "defaultValue": "DMCA Notice" }
+        },
+        "footerLegalDmcaHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "DMCA link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/dmca" }
+        },
+        "footerLegalPrivacyLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Privacy policy link label",
+          "options": { "defaultValue": "Privacy Policy" }
+        },
+        "footerLegalPrivacyHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Privacy policy link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/privacypolicy" }
+        },
+        "footerLegalSitemapLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Site map link label",
+          "options": { "defaultValue": "Site Map" }
+        },
+        "footerLegalSitemapHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Site map link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/sitemap" }
+        },
+        "footerLegalContactLabel": {
+          "type": "inputText",
+          "required": false,
+          "label": "Contact link label",
+          "options": { "defaultValue": "Contact us" }
+        },
+        "footerLegalContactHref": {
+          "type": "inputText",
+          "required": false,
+          "label": "Contact link URL",
+          "options": { "defaultValue": "https://www.lumi.cn/en/contactus" }
+        },
+        "footerCopyrightStartYear": {
+          "type": "inputNumber",
+          "required": false,
+          "label": "Copyright start year",
+          "options": { "defaultValue": "2005" }
+        },
+        "footerCopyrightOwner": {
+          "type": "inputText",
+          "required": false,
+          "label": "Copyright owner text",
+          "options": { "defaultValue": "LUMI CORP. All Rights Reserved." }
+        }
+      }
+    }
+  }
+}

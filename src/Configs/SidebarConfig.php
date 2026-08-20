@@ -2,9 +2,17 @@
 
 namespace PlentyTestPlugin\Configs;
 
+use Plenty\Plugin\ConfigRepository;
+
 /**
  * Content for the fixed vertical icon toolbar stuck to the right edge of
  * the viewport (How to Use / Inquiry / Compare / Contact Us on lumi.cn).
+ *
+ * Editable from the plentymarkets backend under Plugins -> PlentyTestPlugin
+ * -> Configuration ("Sidebar" section). Fixed at these 4 items (icon +
+ * action type stay code-defined — only label/href text is configurable),
+ * so each field is a plain text setting rather than a JSON blob. Blank
+ * fields fall back to defaults() below.
  *
  * `action` is either:
  *  - 'link'  -> renders a normal <a href="...">
@@ -15,7 +23,40 @@ namespace PlentyTestPlugin\Configs;
  */
 class SidebarConfig
 {
-    public static function get(): array
+    public static function get(ConfigRepository $config): array
+    {
+        $defaults = self::defaults();
+
+        return [
+            'items' => [
+                [
+                    'label'  => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarGuideLabel', $defaults['items'][0]['label']),
+                    'icon'   => 'guide',
+                    'action' => 'guide',
+                ],
+                [
+                    'label'  => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarInquiryLabel', $defaults['items'][1]['label']),
+                    'icon'   => 'inquiry',
+                    'action' => 'link',
+                    'href'   => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarInquiryHref', $defaults['items'][1]['href']),
+                ],
+                [
+                    'label'  => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarCompareLabel', $defaults['items'][2]['label']),
+                    'icon'   => 'compare',
+                    'action' => 'link',
+                    'href'   => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarCompareHref', $defaults['items'][2]['href']),
+                ],
+                [
+                    'label'  => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarContactLabel', $defaults['items'][3]['label']),
+                    'icon'   => 'contact',
+                    'action' => 'link',
+                    'href'   => ConfigHelper::text($config, 'PlentyTestPlugin.sidebarContactHref', $defaults['items'][3]['href']),
+                ],
+            ],
+        ];
+    }
+
+    private static function defaults(): array
     {
         return [
             'items' => [
