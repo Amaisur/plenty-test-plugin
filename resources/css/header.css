@@ -52,8 +52,8 @@
 .lh-site-header-d5.lh-is-stuck-d5 .lh-header-inner-d5{height:72px;}
 
 /* Logo */
-.lh-logo-d5{flex:0 0 auto;display:block;}
-.lh-logo-d5 img{width:150px;height:auto;}
+.lh-logo-d5{flex:0 0 auto;display:block; height: 90%;}
+.lh-logo-d5 img{width:150px;height:auto; max-height:100%; object-fit:contain;}
 
 /* ==========================================================================
    Primary navigation
@@ -490,7 +490,7 @@
 @media (max-width:1400px){
   .lh-nav-link-d5{padding:0 16px;font-size:14px;}
   .lh-nav-link-d5::after{left:16px;right:16px;}
-  .lh-logo-d5 img{width:130px;}
+  .lh-logo-d5 img{width:130px;max-height: 100%; object-fit: contain;}
   .lh-header-inner-d5{padding:0 24px;}
   .lh-mega-inner-d5,.lh-mega-quick-inner-d5{padding-left:24px;padding-right:24px;}
   .lh-search-d5{flex-basis:170px;}
