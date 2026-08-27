@@ -52,7 +52,7 @@
 .lh-site-header-d5.lh-is-stuck-d5 .lh-header-inner-d5{height:72px;}
 
 /* Logo */
-.lh-logo-d5{flex:0 0 auto;display:block; height: 90%;}
+.lh-logo-d5{flex:0 0 auto;display:flex; height: 90%;}
 .lh-logo-d5 img{width:150px;height:auto; max-height:100%; object-fit:contain;}
 
 /* ==========================================================================
