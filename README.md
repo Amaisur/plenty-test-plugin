@@ -31,7 +31,28 @@ Every piece of content — logo images, nav/mega-menu links, hero slides, promo 
 
 Two field shapes are used:
 - **Plain text fields** (logo URLs, search settings, promo panel copy, sidebar labels/links, footer social/legal/copyright) — one setting per value.
-- **JSON-array fields** (`headerNavJson`, `headerLanguagesJson`, `heroSlidesJson`, `footerColumnsJson`, `footerSubscribeFieldsJson`) — plentymarkets plugin config has no repeater/array field type, so repeating content (the mega menu, hero slides, footer columns, subscribe form fields) is a single `inputTextArea` field holding a JSON array. Paste an edited copy of the shape already in the matching `*Config.php`'s `defaults()` array to override it.
+- **JSON-array fields** (`headerNavJson`, `headerLanguagesJson`, `heroSlidesJson`, `footerColumnsJson`, `footerSubscribeFieldsJson`) — plentymarkets plugin config has no repeater/array field type, so repeating content (the mega menu, hero slides, footer columns, subscribe form fields) is a single `inputTextArea` field holding a JSON array.
+
+Each JSON field ships **pre-filled with its complete built-in content** as the field's `defaultValue`, so the backend shows the real structure to edit rather than an empty box — change the entries you want and leave the rest, or clear the field entirely to fall back to the PHP `defaults()`. The pre-filled JSON is a byte-for-byte equivalent of the matching `*Config.php` `defaults()` array, so saving the field unchanged is a no-op.
+
+### JSON field shapes
+
+`heroSlidesJson`, `headerLanguagesJson`, `footerColumnsJson` and `footerSubscribeFieldsJson` are flat lists whose shape the field label spells out. `headerNavJson` is the involved one — a list of top-level nav entries, each with a `type`:
+
+- `"type": "link"` — `{label, href}`, rendered as a plain nav link.
+- `"type": "dropdown"` — adds `links: [{label, href}]`; a link may itself carry `sub: [{label, href}]` for one nested level.
+- `"type": "mega"` — adds `columns` (a list of columns, each a list of blocks) plus `quickAccess: {label, links:[{label, href}]}` for the bar along the bottom.
+
+Blocks inside a mega-menu column are also typed:
+
+| `type` | Shape | Renders as |
+| --- | --- | --- |
+| `brand` | `{label, desc, href}` | Column heading with a sub-label |
+| `group` | `{label, href, items:[{label, href, badge?}]}` | A link group; optional `badge` shows a tag such as `New` |
+| `solutions` | `{heading, logos:[{href, alt, off, on}]}` | Logo row; `off`/`on` are the normal and hover image URLs |
+| `news` | `{heading, headingSmall, cards:[{href, alt, img}]}` | Image card stack |
+
+Keep these in sync: if you change a `defaults()` array in `src/Configs/`, update the matching `defaultValue` in `config.json` too, otherwise the backend will keep offering the old structure as its starting point.
 
 **Every field is safe to leave blank or get wrong.** `ConfigHelper::text()`/`::json()`/`::int()` treat a blank value, or JSON that fails to parse, as "use the built-in default" rather than erroring — a bad edit in the backend degrades that one field back to its default, it never breaks the page. This was a deliberate design choice after `config.json` twice caused the whole plugin to silently fail plugin validation and fall back to the shop's default homepage during development (see git history) — every config read in this plugin is now defensive for exactly that reason.
 
