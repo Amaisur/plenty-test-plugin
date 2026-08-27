@@ -39,6 +39,11 @@ class ConfigHelper
         }
 
         $decoded = json_decode($raw, true);
-        return (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) ? $decoded : $default;
+
+        // json_decode() returns null (not an array) on malformed JSON, so the
+        // is_array() check alone is enough to detect a parse failure. Do not add
+        // a json error-code check here: that function is not on plentymarkets'
+        // allowed-function list and fails plugin validation on deployment.
+        return is_array($decoded) ? $decoded : $default;
     }
 }

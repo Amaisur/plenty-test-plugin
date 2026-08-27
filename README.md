@@ -81,3 +81,20 @@ fresh plugin skeleton from your backend's **Plugin IDE / Plugin Builder** and
 diffing its `plugin.json` against this one, in case your platform version
 expects slightly different fields.
 # plenty-test-plugin
+
+## Note on allowed PHP functions
+
+PlentyONE runs plugin PHP in a sandbox with a whitelist of permitted native
+functions, checked at **deployment** time — not at runtime. A call to a
+function outside that list fails the deployment with
+`Syntax errors — php function "x" is not allowed`, and **the plugin set is not
+deployed at all**, so the shop keeps serving the last build that deployed
+successfully. (This is why an edit can appear to "not update on the site": the
+deploy that carried it never landed.)
+
+`json_last_error()` is one such disallowed function — `ConfigHelper::json()`
+therefore detects malformed JSON purely via `is_array(json_decode(...))`, which
+is equivalent (`json_decode()` returns `null`, not an array, when parsing
+fails). Prefer the language constructs and `is_*()` checks already used in
+`ConfigHelper` over reaching for additional native functions; if you must add
+one, deploy early to confirm it passes validation.
